@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script type="text/javascript">
+      var n = prompt("h=", 10);
+      for (j = 1; j <= n; j++) {
+        s = 0;
+        su = 0;
+        for (i = 1; i <= j; i *= 10) {
+          s++;
+        }
+        for (i = 1; i <= j; i *= 10) {
+          k = Math.floor((j % (10 * i)) / i);
+
+          su += Math.pow(k, s);
+        }
+        if (j == su) {
+          document.write("Армостронгийн тоо", j);
+          document.write("<br />");
+        }
+      }
+    </script>
+  </body>
+</html>

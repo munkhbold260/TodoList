@@ -1,0 +1,19 @@
+* {
+  box-sizing: 0;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  background-color: aqua;
+}
+.inputter input {
+  background-color: rgb(115, 115, 141);
+  color: white;
+}
+.button button {
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 5px;
+  border: solid 1px black;
+}
