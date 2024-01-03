@@ -33,6 +33,7 @@ function boardmake() {
     const cards = document.createElement("div");
     cards.setAttribute("class", "cards");
     cards.setAttribute("id", `${title.id}`);
+
     board.appendChild(cards);
 
     const addCardBtn = document.createElement("button");
@@ -102,6 +103,7 @@ function boardmake() {
         const card = document.createElement("div");
         card.setAttribute("class", "card");
         card.setAttribute("id", `${index++}`);
+
         cards.appendChild(card);
 
         const cardTitle = document.createElement("h2");
@@ -111,13 +113,12 @@ function boardmake() {
         const deleteBtn = document.createElement("button");
         deleteBtn.setAttribute("class", "deleteBtn");
         deleteBtn.setAttribute("id", `${index++}`);
+        deleteBtn.innerText = "delete";
         card.appendChild(deleteBtn);
 
         deleteBtn.addEventListener("click", () => {
-          const qwe = document.getElementById(deleteBtn.id);
-          if (deleteBtn.id == deleteBtn.id - 1) {
-            qwe.remove();
-          }
+          const qwe = document.getElementById((card.id = deleteBtn.id - 1));
+          qwe.remove();
         });
 
         const cardDescription = document.createElement("p");
@@ -128,7 +129,6 @@ function boardmake() {
         cardPriotity.innerText = priority.value;
         card.appendChild(cardPriotity);
 
-        console.log("shbedjkhedeuyeuyfeuyfg");
         if (status.value == "To do") {
           todo.appendChild(card);
         } else if (status.value == "In progress") {
@@ -138,14 +138,14 @@ function boardmake() {
         } else if (status.value == "Done") {
           done.appendChild(card);
         }
-        addCardDiv.style.display = "none";
-        // modal.style.display = "none";
+        addCardDiv.remove();
       });
     });
   });
 }
 boardmake();
 
-// function createTask()
-// function editTask()
-// function deleteTask()
+// // function createTask()
+// // function editTask()
+// // function deleteTask()
+O0;
