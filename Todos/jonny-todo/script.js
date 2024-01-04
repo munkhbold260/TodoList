@@ -7,14 +7,14 @@ root.appendChild(container);
 const boards = document.createElement("div");
 boards.setAttribute("class", "boards");
 container.appendChild(boards);
-const todoList = Array();
+let todoList = [];
 const boardTitle = [
   { title: "Todo", id: "todo" },
   { title: "In Progress", id: "inprogress" },
   { title: "Stuck", id: "stuck" },
   { title: "Done", id: "done" },
 ];
-boardTitle.map((title) => {
+boardTitle.map((title, index) => {
   const board = document.createElement("div");
   board.setAttribute("class", "board");
   boards.appendChild(board);
@@ -49,6 +49,15 @@ function createTodoItem(item) {
   cardTitle.innerText = item[2];
   card.appendChild(cardTitle);
 
+  const deleteBtn = document.createElement("button");
+  deleteBtn.setAttribute("class", "deleteBtn");
+  deleteBtn.setAttribute("id", item[4]);
+  let id = item[4];
+  // id itemiin hamgiin suuld  bga .teriig delete button daragdhad tsug yawuulj todoList ees arilgana
+  deleteBtn.setAttribute("onclick", "deleteTask(id)");
+  deleteBtn.innerText = "delete";
+  card.appendChild(deleteBtn);
+
   const cardDescription = document.createElement("p");
   cardDescription.innerText = item[0];
   card.appendChild(cardDescription);
@@ -66,14 +75,6 @@ function createTodoItem(item) {
   } else if (item[3] == "Done") {
     done.appendChild(card);
   }
-  const deleteBtn = document.createElement("button");
-  deleteBtn.setAttribute("class", "deleteBtn");
-  deleteBtn.setAttribute("id", item[4]);
-  let id = item[4];
-  // id itemiin hamgiin suuld  bga .teriig delete button daragdhad tsug yawuulj todoList ees arilgana
-  deleteBtn.setAttribute("onclick", "deleteTask(id)");
-  deleteBtn.innerText = "delete";
-  card.appendChild(deleteBtn);
   //Add card tsonhiig arilgah
   document.getElementsByClassName("addCardDiv").item(0).remove();
 }
@@ -94,7 +95,6 @@ function deleteTask(id) {
 
 //undsen card shineer nemeh tsonh neegdej bga
 function addTask() {
-  console.log(todoList.length);
   const addCardDiv = document.createElement("div");
   addCardDiv.setAttribute("class", "addCardDiv");
   root.appendChild(addCardDiv);

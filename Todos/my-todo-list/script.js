@@ -99,11 +99,13 @@ function boardmake() {
       addTaskBtn.innerText = "Add Task";
       modal.appendChild(addTaskBtn);
 
+      addCardDiv.addEventListener("click", () => {
+        addCardDiv.remove();
+      });
       addTaskBtn.addEventListener("click", () => {
         const card = document.createElement("div");
         card.setAttribute("class", "card");
         card.setAttribute("id", `${index++}`);
-
         cards.appendChild(card);
 
         const cardTitle = document.createElement("h2");
@@ -144,8 +146,3 @@ function boardmake() {
   });
 }
 boardmake();
-
-// // function createTask()
-// // function editTask()
-// // function deleteTask()
-O0;
