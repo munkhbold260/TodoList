@@ -51,7 +51,7 @@ function render() {
   console.log(cardList);
   cardList.map((item) => {
     let card = document.createElement("div");
-    card.innerText = item.title;
+    card.innerText = item.tit121;
     let cards = document.getElementById("todo");
     cards.appendChild(card);
   });
