@@ -70,6 +70,7 @@ body {
   position: absolute;
   top: 0px;
   padding: 120px;
+  display: none;
 }
 .modal {
   width: 400px;
