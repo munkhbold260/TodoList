@@ -3,7 +3,7 @@ const root = document.getElementById("root");
 const container = document.createElement("div");
 container.setAttribute("class", "container");
 root.appendChild(container);
-
+////board uusgeh
 const boards = document.createElement("div");
 boards.setAttribute("class", "boards");
 container.appendChild(boards);
@@ -14,47 +14,40 @@ const boardTitle = [
   { title: "Stuck", id: "stuck" },
   { title: "Done", id: "done" },
 ];
-{
-  ////board uusgeh
+boardTitle.map((title, index) => {
+  const board = document.createElement("div");
+  board.setAttribute("class", "board");
+  boards.appendChild(board);
 
-  boardTitle.map((title, index) => {
-    const board = document.createElement("div");
-    board.setAttribute("class", "board");
-    boards.appendChild(board);
+  const head = document.createElement("div");
+  head.setAttribute("class", "head");
+  head.innerText = title.title;
+  board.appendChild(head);
 
-    const head = document.createElement("div");
-    head.setAttribute("class", "head");
-    head.innerText = title.title;
-    board.appendChild(head);
+  const cardCount = document.createElement("p");
+  cardCount.innerText = 0;
+  head.appendChild(cardCount);
 
-    const cardCount = document.createElement("p");
-    cardCount.innerText = 0;
-    head.appendChild(cardCount);
+  const cards = document.createElement("div");
+  cards.setAttribute("class", "cards");
+  cards.setAttribute("id", `${title.id + "Cards"}`);
 
-    const cards = document.createElement("div");
-    cards.setAttribute("class", "cards");
-    cards.setAttribute("id", `${title.id}`);
+  board.appendChild(cards);
 
-    board.appendChild(cards);
+  const addCardBtn = document.createElement("button");
+  addCardBtn.setAttribute("class", "addCardBtn");
+  addCardBtn.setAttribute("id", "addCardBtn");
+  addCardBtn.innerText = "+  Add card";
 
-    const addCardBtn = document.createElement("button");
-    addCardBtn.setAttribute("class", "addCardBtn");
-    addCardBtn.setAttribute("id", "addCardBtn");
-    addCardBtn.innerText = "+  Add card";
+  addCardBtn.addEventListener("click", addCardDIvCall);
+  board.appendChild(addCardBtn);
+});
 
-    addCardBtn.addEventListener("click", () => {
-      addCardDiv.style.display = "block";
-    });
-    board.appendChild(addCardBtn);
-  });
-}
-{
-  //////////addCardDIv/////////
-
+function addCardDIvCall() {
+  document.getElementById("root");
   const addCardDiv = document.createElement("div");
   addCardDiv.setAttribute("class", "addCardDiv");
   addCardDiv.setAttribute("id", "addCardDiv");
-  let addCardDIv = document.getElementById("addCardDiv");
   root.appendChild(addCardDiv);
 
   const modal = document.createElement("div");
@@ -67,18 +60,18 @@ const boardTitle = [
 
   const title = document.createElement("input");
   title.setAttribute("class", "title");
-  title.setAttribute("id", "title");
+  title.setAttribute("id", "inputTitle");
   title.placeholder = "Title";
   modal.appendChild(title);
 
   const description = document.createElement("input");
   description.setAttribute("class", "description");
-  description.setAttribute("id", "description");
+  description.setAttribute("id", "inputDescription");
   description.placeholder = "Description";
   modal.appendChild(description);
 
   const status = document.createElement("select");
-  status.setAttribute("id", "status");
+  status.setAttribute("id", "selectStatus");
   const statusTodo = document.createElement("option");
   statusTodo.innerText = "To do";
   status.appendChild(statusTodo);
@@ -94,7 +87,7 @@ const boardTitle = [
   modal.appendChild(status);
 
   const priority = document.createElement("select");
-  priority.setAttribute("id", "priority");
+  priority.setAttribute("id", "selectPriority");
   const priorityLow = document.createElement("option");
   priorityLow.innerText = "Low";
   priority.appendChild(priorityLow);
@@ -117,45 +110,53 @@ const boardTitle = [
 
   addTaskBtn.addEventListener("click", pushToCardList);
 }
-
+////////
 function pushToCardList() {
   cardList.push({
-    title: title.value,
-    description: description.value,
-    status: status.value,
-    priority: priority.value,
+    title: inputTitle.value,
+    description: inputDescription.value,
+    status: selectStatus.value,
+    priority: selectPriority.value,
   });
-
-  let cards = document.getElementById("todo");
-  cards.innerHTML = "";
-  // todoRender(cardList);
   console.log(cardList);
+  document.getElementById("addCardDiv").remove();
+  filterleh();
 }
-////\\\\\//////////\\\\\\\\\\\////////\\\\\\\\\\\//////////
+/////////// statusaar filterdeh
 
-// function todoRender(cardList) {
-//   let cards = document.getElementById("todo");
-//   let sth = cardList.map((object) => {
-//     let sthp = document.createElement("p");
-//     sthp.innerText = object.title + object.status;
-//     cards.appendChild(sthp);
-//   });
-//   console.log(cardList);
-//   console.log(cards);
-// }
+function filterleh() {
+  const todoCard = document.createElement("div");
+  todoCard.setAttribute("class", "card");
+  todoCard.setAttribute("id", "todoCard");
+  todoCards.appendChild(todoCard);
 
-// function render() {
-//   console.log(cardList);
-//   cardList.map((item) => {
-//     let card = document.createElement("div");
-//     card.innerText = "hugbytfv";
-//     let cards = document.getElementById("todo");
-//     cards.appendChild(card);
-//   });
-// }
-///////////////\\\\\\\\\\\\\\\\/////////////////\\\\\\\\\\\\\\\\\\////////
-////////
-////////
-////////
-////////
-// //neg card uusgeh code item = 1 cartnii buh informatsn
+  const cardTitle = document.createElement("h2");
+  cardTitle.innerText = "title";
+  todoCard.appendChild(cardTitle);
+
+  const cardDescription = document.createElement("p");
+  cardDescription.innerText = "description";
+  todoCard.appendChild(cardDescription);
+
+  const cardPriotity = document.createElement("p");
+  cardPriotity.innerText = "priority";
+  todoCard.appendChild(cardPriotity);
+
+  const cardButtons = document.createElement("div");
+  cardButtons.setAttribute("class", "cardButtons");
+  todoCard.appendChild(cardButtons);
+
+  const doneBtn = document.createElement("button");
+  doneBtn.setAttribute("class", "deleteBtn");
+  doneBtn.innerText = "done";
+  cardButtons.appendChild(doneBtn);
+  const deleteBtn = document.createElement("button");
+  deleteBtn.setAttribute("class", "deleteBtn");
+  deleteBtn.innerText = "delete";
+  cardButtons.appendChild(deleteBtn);
+
+  const editBtn = document.createElement("button");
+  editBtn.setAttribute("class", "deleteBtn");
+  editBtn.innerText = "edit";
+  cardButtons.appendChild(editBtn);
+}
